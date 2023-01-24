@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_3dp">
+
+    <TextView
+        android:id="@+id/tvKycItemLayoutName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/aadhar_name"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="12sp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tvKycItemLayoutFiCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loan_application_ficode"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="10sp"
+        android:visibility="visible"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
+

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+
+        <include layout="@layout/layout_aadhar_info" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:textSize="14dp"
+                android:textColor="@color/defaultTextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/applicant_mobile" />
+
+            <TextView
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/tietLoanAppAadharApplicantMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="10"
+                android:hint="@string/applicant_mobile" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:textSize="14dp"
+                android:textColor="@color/defaultTextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/applicant_pan" />
+
+            <TextView
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/tietLoanAppAadharApplicantPan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="10"
+                android:hint="@string/applicant_pan" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:textSize="14dp"
+                android:textColor="@color/defaultTextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/applicant_voter" />
+
+            <TextView
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/tietLoanAppAadharApplicantVoter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/applicant_voter" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:textSize="14dp"
+                android:textColor="@color/defaultTextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/applicant_driving_license" />
+
+            <TextView
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/tietLoanAppAadharApplicantDrivingLicense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/applicant_driving_license" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:textSize="14dp"
+                android:textColor="@color/defaultTextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/business_details" />
+
+            <TextView
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/tietLoanAppAadharBusinessDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/business_details" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:textSize="14dp"
+                android:textColor="@color/defaultTextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/loan_purpose" />
+
+            <TextView
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/tietLoanAppAadharLoanReason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/loan_purpose" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:textSize="14dp"
+                android:textColor="@color/defaultTextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/applicant_bank_account_number" />
+
+            <TextView
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/tietLoanAppAadharBankAcNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/applicant_bank_account_number" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:textSize="14dp"
+                android:textColor="@color/defaultTextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/loan_amount" />
+
+            <TextView
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/tietLoanAppAadharLoanAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/loan_amount" />
+        </LinearLayout>
+
+        <CheckBox
+            android:textSize="15dp"
+            android:textColor="@color/defaultTextColor"
+            android:id="@+id/chkDifferentAddressThenAadhar"
+            android:text="@string/address_different_from_aadhar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/loCurrentAddress"
+            layout="@layout/layout_current_address"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</ScrollView>

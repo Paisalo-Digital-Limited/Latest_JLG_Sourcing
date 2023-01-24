@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:textSize="14dp"
+            android:textColor="@color/defaultTextColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aadhar_name" />
+
+        <TextView
+            android:textSize="15dp"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/tvAadharName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/aadhar_name" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight=".8"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textSize="14dp"
+                        android:textColor="@color/defaultTextColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/aadhar_id"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:textSize="15dp"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/tvAadharAadhar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="7"
+                        android:maxLength="12"
+                        android:hint="@string/aadhar_id"
+                        android:visibility="visible" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutAadharAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textSize="14dp"
+                    android:textColor="@color/defaultTextColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aadhar_age" />
+
+                <TextView
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimary"
+                    android:id="@+id/tvAadharAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/aadhar_age" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/layoutAadharAge"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textSize="14dp"
+                    android:textColor="@color/defaultTextColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aadhar_dob" />
+
+                <TextView
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimary"
+                    android:id="@+id/tvAadharDob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/aadhar_dob" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textSize="14dp"
+                    android:textColor="@color/defaultTextColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aadhar_gender" />
+
+                <TextView
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimary"
+                    android:id="@+id/tvAadharGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/aadhar_gender" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgViewAadharPhoto"
+            android:src="@drawable/take_photograph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:textSize="14dp"
+            android:textColor="@color/defaultTextColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aadhar_father_spouse" />
+
+        <TextView
+            android:textSize="15dp"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/tvAadharGuardian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/aadhar_father_spouse" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:textSize="14dp"
+            android:textColor="@color/defaultTextColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aadhar_address" />
+
+        <TextView
+            android:textSize="15dp"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/tvAadharAddress1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/aadhar_address1" />
+
+        <TextView
+            android:textSize="15dp"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/tvAadharAddress2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/aadhar_address2" />
+
+        <TextView
+            android:textSize="15dp"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/tvAadharAddress3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/tvAadharPinCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:ems="4"
+                android:hint="@string/aadhar_pin" />
+
+            <TextView
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/tvAadharCity"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="@string/aadhar_city" />
+        </LinearLayout>
+
+        <TextView
+            android:textSize="15dp"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/tvAadharState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/aadhar_state" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,174 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 32
+    buildToolsVersion = "32.1.0-rc1"
+
+    defaultConfig {
+        applicationId "com.softeksol.paisalo.jlgsourcing"
+        minSdkVersion 21
+        targetSdkVersion 32
+        versionCode 85
+
+        versionName "8.5"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        config {
+            keyAlias 'IGL'
+            keyPassword 'research'
+            storeFile file('D:/KeyStore/JLGSourcing/JKSFile.jks')
+            storePassword 'research'
+        }
+    }
+
+    buildTypes {
+        /*release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }*/
+        release {
+            minifyEnabled true
+            debuggable false
+            zipAlignEnabled true
+            shrinkResources true
+            //buildConfigField("String", 'BASE_URL', '"https://agra.paisalo.in:8445/PLServiceV82/"')
+            buildConfigField("String", 'BASE_URL', '"https://agra.seil.in:8444/PLServicev82/"')
+         //   buildConfigField("String", 'BASE_URL', '"https://agra.seil.in:8845/PLServiceV82Audit/"')
+       //     buildConfigField("String", 'BASE_URL', '"http://kailash.seil.in:8086/PLService/"')
+            buildConfigField("String", 'EKYC_FETCH_URL', '"https://esign.paisalo.in:8445/v25/api/KycDataSZenApi/GetEKyc"')
+            buildConfigField("String[]", 'AUTH_TYPE', '{"FP"}')
+            buildConfigField("String", 'PROC_NAME', '""')
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+
+        debug {
+            minifyEnabled false
+            //buildConfigField("String", 'BASE_URL', '"http://agra.seil.in:8087/PLServicev82/"')
+            buildConfigField("String", 'BASE_URL', '"https://agra.seil.in:8444/PLServicev82/"')
+            //buildConfigField("String", 'BASE_URL', '"https://agra.paisalo.in:8445/PLServiceV82/"')
+            //buildConfigField("String", 'BASE_URL', '"http://kailash.seil.in:8086/PLService/"')
+            buildConfigField("String", 'EKYC_FETCH_URL', '"http://agra.seil.in:8085/SeilKycESign/api/KycDataSZenApi/GetEKyc"')
+
+            buildConfigField("String[]", 'AUTH_TYPE', '{"FP","OTP"}')
+            buildConfigField("String", 'PROC_NAME', '""')
+            //buildConfigField("String", 'PROC_NAME', '"test"')
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+          //  signingConfig signingConfigs.config
+        }
+    }
+
+    productFlavors {
+
+        igl {
+            versionCode 73
+            versionName "7.3"
+            resValue("string", "appname", "आई जी एल")
+            applicationId "net.softeksol.seil.seiligl"
+            buildConfigField("String", 'DATABASE_NAME', '"IGLDIG_PL"')
+            buildConfigField("String", 'ESIGN_APP', '"net.softeksol.seil.esignseil"')
+            dimension = 'sourcing'
+        }
+
+        groupfin {
+            applicationId "net.softeksol.seil.groupfin"
+            resValue("string", "appname", "ग्रुप")
+            buildConfigField("String", 'DATABASE_NAME', '"GROUPFIN_MFI"')
+            buildConfigField("String",'ESIGN_APP','"net.softeksol.seil.esignseilgrp"')
+            dimension = 'sourcing'
+        }
+
+        SBI {
+            applicationId "net.softeksol.seil.groupfin.coorigin"
+            resValue("string", "appname", "Coorigination")
+            buildConfigField("String", 'DATABASE_NAME', '"SBIPDL"')
+            //buildConfigField("String", 'DATABASE_NAME', '"SBIPDL_TEST"')
+            buildConfigField("String",'ESIGN_APP','"net.softeksol.seil.esignseil.coorigin"')
+            dimension = 'sourcing'
+        }
+
+        SBIColending {
+            versionCode 10
+            versionName "10.0"
+            applicationId "net.softeksol.seil.groupfin.sbicolending"
+            resValue("string", "appname", "SBI-CoLending")
+            buildConfigField("String", 'DATABASE_NAME', '"SBIPDLCOL"')
+            //buildConfigField("String", 'DATABASE_NAME', '"SBIPDL_TEST"')
+            buildConfigField("String",'ESIGN_APP','"net.softeksol.seil.esignseil.sbicolending"')
+            dimension = 'sourcing'
+        }
+
+        PaisaloLoanApp {
+            versionCode 5
+            versionName "5.0"
+            applicationId "net.softeksol.seil.paisalo.loan.app"
+            resValue("string", "appname", "Paisalo Loan App")
+            buildConfigField("String", 'DATABASE_NAME', '"SBIPDLCOL"')
+            //buildConfigField("String", 'DATABASE_NAME', '"SBIPDL_TEST"')
+            buildConfigField("String",'ESIGN_APP','"net.softeksol.seil.esignseil.paisalo"')
+            dimension = 'sourcing'
+        }
+
+    }
+    flavorDimensions 'sourcing'
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    def androidx_version = "1.2.1"
+    def dbflow_version = "3.1.1"
+    def sqlcipher_version = "3.5.4"
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.nabinbhandari.android:permissions:3.8'
+
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation "androidx.cardview:cardview:1.0.0"
+
+    implementation "androidx.appcompat:appcompat:1.4.1"
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation "com.google.android.material:material:1.5.0"
+    implementation "androidx.vectordrawable:vectordrawable:1.1.0"
+
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+    implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.0'
+
+    implementation 'jp.wasabeef:glide-transformations:4.3.0'
+    implementation 'com.google.code.gson:gson:2.8.7'
+
+    implementation "com.github.raizlabs.dbflow:dbflow-core:${dbflow_version}"
+    implementation "com.github.raizlabs.dbflow:dbflow:${dbflow_version}"
+    annotationProcessor "com.github.raizlabs.dbflow:dbflow-processor:${dbflow_version}"
+
+    implementation "com.github.raizlabs.dbflow:dbflow-sqlcipher:${dbflow_version}"
+    implementation 'net.zetetic:android-database-sqlcipher:3.5.1'
+
+    implementation 'com.scottyab:rootbeer-lib:0.1.0'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+}

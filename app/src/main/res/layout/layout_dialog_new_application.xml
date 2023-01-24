@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/fab_margin">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilNewAppAadhar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietNewAppAadhar"
+            android:hint="Aadhar Number"
+            android:inputType="number"
+            android:digits="0123456789"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <CheckedTextView
+        android:id="@+id/chkTvNewAppTopup"
+        app:layout_constraintTop_toBottomOf="@id/tilNewAppAadhar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Topup Case"
+        android:checkMark="@drawable/ic_check_box_outline_blank_black_24dp"
+        android:checked="true"
+        android:textSize="18dp"
+        android:layout_marginStart="@dimen/input_label_horizontal_spacing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilNewAppOldCaseCode"
+        app:layout_constraintTop_toBottomOf="@id/chkTvNewAppTopup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietNewAppOldCaseCode"
+            android:hint="Old Case Code"
+            android:inputType="textCapCharacters"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        app:layout_constraintTop_toBottomOf="@id/tilNewAppOldCaseCode"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/acbtnCancel"
+        android:text="Perform KYC"
+        android:id="@+id/acbtnPerformKyc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        app:layout_constraintTop_toBottomOf="@id/tilNewAppOldCaseCode"
+        app:layout_constraintStart_toEndOf="@id/acbtnPerformKyc"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/acbtnCancel"
+        android:text="Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

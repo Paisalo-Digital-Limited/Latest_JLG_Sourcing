@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="manager_select_title">Select Group</string>
+    <string name="guarantor_title">Nominee</string>
+    <string name="guarantor_title_select">Select Nominee</string>
+</resources>

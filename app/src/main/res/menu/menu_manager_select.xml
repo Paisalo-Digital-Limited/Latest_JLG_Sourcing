@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.ActivityLoanApplication">
+
+    <item
+        android:id="@+id/action_collection_details"
+        android:title="@string/collection_details"
+        android:icon="@android:drawable/ic_menu_info_details"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="100"
+        android:visible="false" />
+    <item
+        android:id="@+id/action_update_options"
+        android:orderInCategory="100"
+        android:title="@string/action_update_options"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_send_db_backup"
+        android:orderInCategory="101"
+        android:title="@string/action_send_db_backup"
+        android:visible="false"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_restore_db"
+        android:orderInCategory="101"
+        android:title="@string/action_restore_backup"
+        android:visible="false"
+        app:showAsAction="never" />
+
+</menu>

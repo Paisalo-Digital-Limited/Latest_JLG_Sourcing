@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "net.softeksol.seil.groupfin.coorigin",
+  "variantName": "SBIRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 85,
+      "versionName": "8.5",
+      "outputFile": "app-SBI-release.apk"
+    }
+  ],
+  "elementType": "File"
+}

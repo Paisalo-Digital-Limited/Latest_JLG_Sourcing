@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_margin="@dimen/margin_6dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvFamilyName"
+        android:text="Borrower Name"
+        android:gravity="center_horizontal"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvFamilyGenderAge"
+        app:layout_constraintHorizontal_weight=".35"
+        android:text="Gender Age"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFamilyName"
+        app:layout_constraintEnd_toStartOf="@+id/tvFamilyHealth"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvFamilyHealth"
+        app:layout_constraintHorizontal_weight=".65"
+        android:text="Health"
+        android:gravity="end"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toEndOf="@id/tvFamilyGenderAge"
+        app:layout_constraintTop_toTopOf="@id/tvFamilyGenderAge"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvFamilyEducation"
+        android:text="Education"
+        app:layout_constraintHorizontal_weight=".45"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFamilyHealth"
+        app:layout_constraintEnd_toStartOf="@+id/tvFamilySchoolType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvFamilySchoolType"
+        app:layout_constraintHorizontal_weight=".55"
+        android:text="Education Type"
+        android:gravity="end"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toEndOf="@id/tvFamilyEducation"
+        app:layout_constraintTop_toTopOf="@id/tvFamilyEducation"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvFamilyBusiness"
+        android:text="Business"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFamilyEducation"
+        app:layout_constraintEnd_toStartOf="@+id/tvFamilyBusinessType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvFamilyBusinessType"
+        android:text="Business Type"
+        android:gravity="end"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toEndOf="@id/tvFamilyBusiness"
+        app:layout_constraintTop_toTopOf="@id/tvFamilyBusiness"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvFamilyRelationship"
+        android:text="Relationship"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFamilyBusiness"
+        app:layout_constraintEnd_toStartOf="@+id/tvFamilyIncome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvFamilyIncome"
+        android:text="Income"
+        android:gravity="end"
+        android:layout_marginEnd="@dimen/margin_6dp"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toEndOf="@id/tvFamilyRelationship"
+        app:layout_constraintTop_toTopOf="@id/tvFamilyRelationship"
+        app:layout_constraintEnd_toStartOf="@+id/tvFamilyIncomeType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvFamilyIncomeType"
+        android:text="Cash Flow"
+        android:gravity="end"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toEndOf="@id/tvFamilyIncome"
+        app:layout_constraintTop_toTopOf="@id/tvFamilyRelationship"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</androidx.constraintlayout.widget.ConstraintLayout>

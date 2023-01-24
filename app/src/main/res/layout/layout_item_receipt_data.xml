@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_margin="@dimen/margin_6dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvLyRecCaseCode"
+        android:layout_weight=".4"
+        android:text="CaseCode"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight=".05" />
+
+    <TextView
+        android:id="@+id/tvLyRecReceiptDate"
+        android:layout_weight=".3"
+        android:text="Receipt Date"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight=".05" />
+
+    <TextView
+        android:id="@+id/tvLyRecReceiptAmount"
+        android:layout_weight=".2"
+        android:text="Amt"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        android:gravity="end"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+</LinearLayout>

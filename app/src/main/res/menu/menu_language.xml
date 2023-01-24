@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="@string/action_language"
+        android:iconTint="#ffffff"
+        android:icon="@drawable/language_ic"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:title="@string/action_language_english"
+                android:id="@+id/action_language_english" />
+            <item
+                android:title="@string/action_language_hindi"
+                android:id="@+id/action_language_hindi" />
+        </menu>
+    </item>
+</menu>

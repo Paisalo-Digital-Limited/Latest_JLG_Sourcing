@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin_3dp">
+
+    <ScrollView
+        android:id="@+id/scrlView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNewMemName"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietNewMemName"
+                    android:hint="Family Member Name"
+                    android:inputType="textCapCharacters"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/llNewMemRelationship"
+                app:layout_constraintTop_toBottomOf="@id/tilNewMemName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Relationship"
+                    style="@style/InputLabel" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/acspNewMemRelationship"
+                    android:layout_marginStart="@dimen/input_label_horizontal_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNewMemAge"
+                app:layout_constraintTop_toBottomOf="@id/llNewMemRelationship"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/llNewMemGender"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietNewMemAge"
+                    android:hint="Age"
+                    android:inputType="number"
+                    android:digits="0123456789"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <LinearLayout
+                android:id="@+id/llNewMemGender"
+                app:layout_constraintTop_toTopOf="@id/tilNewMemAge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tilNewMemAge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aadhar_gender"
+                    style="@style/InputLabel" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/acspNewMemGender"
+                    android:layout_marginStart="@dimen/input_label_horizontal_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llNewLenderLoanReason"
+                app:layout_constraintTop_toBottomOf="@id/tilNewMemAge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Health"
+                    style="@style/InputLabel" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/acspNewMemHealth"
+                    android:layout_marginStart="@dimen/input_label_horizontal_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llNewMemEducation"
+                app:layout_constraintTop_toBottomOf="@id/llNewLenderLoanReason"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Education"
+                    style="@style/InputLabel" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/acspNewMemEducation"
+                    android:layout_marginStart="@dimen/input_label_horizontal_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llNewMemSchoolType"
+                app:layout_constraintTop_toBottomOf="@id/llNewMemEducation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="School Type"
+                    style="@style/InputLabel" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/acspNewMemSchoolType"
+                    android:layout_marginStart="@dimen/input_label_horizontal_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNewMemBusiness"
+                app:layout_constraintTop_toBottomOf="@id/llNewMemSchoolType"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietNewMemBusiness"
+                    android:hint="Business"
+                    android:inputType="textCapCharacters"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/llNewMemBusinessType"
+                app:layout_constraintTop_toBottomOf="@id/tilNewMemBusiness"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Business Type"
+                    style="@style/InputLabel" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/acspNewMemBusinessType"
+                    android:layout_marginStart="@dimen/input_label_horizontal_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNewLenderEMIAmount"
+                app:layout_constraintTop_toBottomOf="@id/llNewMemBusinessType"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/llNewMemIncomeType"
+                app:layout_constraintHorizontal_weight=".4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietNewMemIncome"
+                    android:hint="Income"
+                    android:inputType="number"
+                    android:digits="0123456789"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/llNewMemIncomeType"
+                app:layout_constraintTop_toTopOf="@id/tilNewLenderEMIAmount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tilNewLenderEMIAmount"
+                app:layout_constraintHorizontal_weight=".6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Income Type"
+                    style="@style/InputLabel" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/acspNewMemIncomeType"
+                    android:layout_marginStart="@dimen/input_label_horizontal_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        app:layout_constraintTop_toBottomOf="@id/scrlView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/acbtnDelete"
+        android:text="Add/Update"
+        android:id="@+id/acbtnAddmember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        app:layout_constraintTop_toBottomOf="@id/scrlView"
+        app:layout_constraintStart_toEndOf="@id/acbtnAddmember"
+        app:layout_constraintEnd_toStartOf="@+id/acbtnCancel"
+        android:text="Delete"
+        android:id="@+id/acbtnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        app:layout_constraintTop_toTopOf="@id/acbtnAddmember"
+        app:layout_constraintStart_toEndOf="@id/acbtnDelete"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/acbtnCancel"
+        android:text="Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</androidx.constraintlayout.widget.ConstraintLayout>

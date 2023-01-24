@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:name="net.softeksol.sachindra.seiligl.ItemFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/margin_3dp"
+    android:layout_marginRight="@dimen/margin_3dp"
+    app:layoutManager="LinearLayoutManager"
+    tools:listitem="@layout/layout_item_loan_app_info" />
+
+

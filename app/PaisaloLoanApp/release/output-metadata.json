@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "net.softeksol.seil.paisalo.loan.app",
+  "variantName": "PaisaloLoanAppRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 5,
+      "versionName": "5.0",
+      "outputFile": "app-PaisaloLoanApp-release.apk"
+    }
+  ],
+  "elementType": "File"
+}

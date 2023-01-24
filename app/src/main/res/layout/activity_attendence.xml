@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".location.AttendenceActivity">
+
+
+    <RadioGroup
+        android:id="@+id/rgCollectionType"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/AttendenceIN"
+            android:text="IN"
+            android:layout_weight=".5"
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/AttendenceOUT"
+            android:text="OUT"
+            android:layout_weight=".5"
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RadioGroup>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/submitAttendence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/collect"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center" />
+
+
+    <TextView
+        android:id="@+id/textLatLong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="LatLong!"
+        android:layout_gravity="center"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_standard_new"
+        android:layout_marginEnd="@dimen/spacing_standard_new"
+        android:layout_marginBottom="@dimen/spacing_standard_new"
+        android:background="@drawable/shape_three"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/spacing_standard_new"
+            android:paddingTop="@dimen/spacing_standard"
+            android:paddingEnd="@dimen/spacing_standard_new"
+            android:paddingBottom="@dimen/spacing_standard"
+            android:text="MY Address"
+            android:textColor="@color/colorPrimary" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_width"
+            android:background="@color/cardview_dark_background" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_standard">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_standard"
+                android:layout_marginEnd="@dimen/spacing_standard"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Locality"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/textaddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_standard"
+                android:layout_marginTop="@dimen/spacing_control"
+                android:layout_marginEnd="@dimen/spacing_standard"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="City"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/textlocality"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_control"
+                    android:text=""
+                    android:textColor="@color/colorPrimary" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_standard"
+                android:layout_marginTop="@dimen/spacing_standard"
+                android:layout_marginEnd="@dimen/spacing_standard"
+                android:layout_marginBottom="@dimen/spacing_control"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center_vertical"
+                    android:text="State"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/textstate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_control"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
+                    tools:text="$50" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_standard"
+                android:layout_marginTop="@dimen/spacing_standard"
+                android:layout_marginEnd="@dimen/spacing_standard"
+                android:layout_marginBottom="@dimen/spacing_control"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center_vertical"
+                    android:text="Country"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/textcountry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_control"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
+                    tools:text="$50" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_standard"
+                android:layout_marginTop="@dimen/spacing_standard"
+                android:layout_marginEnd="@dimen/spacing_standard"
+                android:layout_marginBottom="@dimen/spacing_control"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center_vertical"
+                    android:text="Pincode"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/textcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_control"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
+                    tools:text="$50" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_standard"
+                android:layout_marginTop="@dimen/spacing_standard"
+                android:layout_marginEnd="@dimen/spacing_standard"
+                android:layout_marginBottom="@dimen/spacing_control"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center_vertical"
+                    android:text="District"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/textdistrict"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_control"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
+                    tools:text="$50" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

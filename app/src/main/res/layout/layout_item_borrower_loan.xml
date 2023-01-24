@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_margin="@dimen/margin_6dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvRunningLoanLenderName"
+        android:text="Lender name"
+        android:gravity="center_horizontal"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvRunningLoanLenderType"
+        app:layout_constraintHorizontal_weight=".65"
+        android:text="Lender Type"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvRunningLoanLenderName"
+        app:layout_constraintEnd_toStartOf="@+id/tvRunningLoanLenderIsMFI"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvRunningLoanLenderIsMFI"
+        app:layout_constraintHorizontal_weight=".35"
+        android:text="Is MFI"
+        android:gravity="end"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toEndOf="@id/tvRunningLoanLenderType"
+        app:layout_constraintTop_toTopOf="@id/tvRunningLoanLenderType"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvRunningLoanReason"
+        android:text="Reason for Loan"
+        android:gravity="center"
+        style="@style/Base.TextAppearance.AppCompat.Small"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvRunningLoanLenderIsMFI"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvRunningLoanLonee"
+        android:text="Lonee"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvRunningLoanReason"
+        app:layout_constraintEnd_toStartOf="@+id/tvRunningLoanAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvRunningLoanAmount"
+        android:text="Loan Amount"
+        android:gravity="end"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toEndOf="@id/tvRunningLoanLonee"
+        app:layout_constraintTop_toTopOf="@id/tvRunningLoanLonee"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvRunningLoanEMI"
+        android:text="Loan EMI"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvRunningLoanLonee"
+        app:layout_constraintEnd_toStartOf="@+id/tvRunningLoanBalance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvRunningLoanBalance"
+        android:text="Balance"
+        android:gravity="end"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toEndOf="@id/tvRunningLoanEMI"
+        app:layout_constraintTop_toTopOf="@id/tvRunningLoanEMI"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+</androidx.constraintlayout.widget.ConstraintLayout>

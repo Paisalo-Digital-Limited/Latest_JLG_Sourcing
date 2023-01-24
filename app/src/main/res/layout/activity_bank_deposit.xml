@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/margin_6dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/llBankDepMaxAmt"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/llBankDepSelectAmt"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Maximum Amount Pending : "
+            style="@style/Base.TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:id="@+id/tvBankDepMaxAmount"
+            style="@style/Base.TextAppearance.AppCompat.Medium" />
+    </LinearLayout>
+
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@+id/llBankDepMaxAmt"
+        app:layout_constraintBottom_toTopOf="@+id/llBankDepBank"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:id="@+id/llBankDepSelectAmt"
+        tools:layout_editor_absoluteX="0dp">
+
+        <Button
+            android:id="@+id/imgBtnBankDepMinus1000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:minWidth="50dp"
+            android:minHeight="25dp"
+            android:text="-1000"
+            android:src="@android:drawable/ic_media_previous" />
+
+        <Button
+            android:id="@+id/imgBtnBankDepMinus100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:minWidth="50dp"
+            android:minHeight="25dp"
+            android:text="-100"
+            android:src="@android:drawable/ic_media_rew" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight=".7"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected : "
+                style="@style/Base.TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:id="@+id/tvBankDepAmount"
+                style="@style/Base.TextAppearance.AppCompat.Medium" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/imgBtnBankDepPlus100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:minWidth="50dp"
+            android:minHeight="25dp"
+            android:text="+100"
+            android:src="@android:drawable/ic_media_next" />
+
+        <Button
+            android:id="@+id/imgBtnBankDepPlus1000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:minWidth="50dp"
+            android:minHeight="25dp"
+            android:text="+1000"
+            android:src="@android:drawable/ic_media_ff" />
+    </LinearLayout>
+
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@+id/llBankDepSelectAmt"
+        app:layout_constraintBottom_toTopOf="@+id/llBankDepAccount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        android:id="@+id/llBankDepBank"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:text="Bank : " />
+
+        <TextView
+            android:id="@+id/tvBankDepBankName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Base.TextAppearance.AppCompat.Medium" />
+    </LinearLayout>
+
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@+id/llBankDepBank"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        android:id="@+id/llBankDepAccount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:text="Account : " />
+
+        <TextView
+            android:id="@+id/tvBankDepBankAccNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Base.TextAppearance.AppCompat.Medium" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight=".1" />
+
+        <Button
+            android:id="@+id/btnBankDepSelectBank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Bank"
+            android:padding="8dp"
+            android:minWidth="50dp"
+            android:minHeight="25dp" />
+    </LinearLayout>
+
+    <ImageView
+        app:layout_constraintTop_toBottomOf="@id/llBankDepAccount"
+        app:layout_constraintBottom_toTopOf="@+id/llBankDepButtons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@mipmap/capture_select_image"
+        android:id="@+id/imgVeiwCaptureBankReceipt"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        android:id="@+id/llBankDepButtons"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight=".15" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBankDepSubmit"
+            android:layout_weight=".275"
+            android:text="Submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight=".15" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBankDepCancel"
+            android:layout_weight=".275"
+            android:text="@string/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight=".15" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

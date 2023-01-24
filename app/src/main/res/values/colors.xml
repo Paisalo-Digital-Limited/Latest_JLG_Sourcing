@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ff1744</color>
+    <color name="colorPrimaryDark">#b71c1c</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorNachBg">#8df2e6</color>
+    <color name="colorLightGreen">#6fa0e698</color>
+    <color name="colorLightRed">#6ff4a0a2</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorMenuKyc">#e5f3f98f</color>
+    <color name="colorMenuApplicationForm">#e5a4f98f</color>
+    <color name="colorMenuCollection">#e58feef9</color>
+    <color name="colorMenuDeposit">#e58fa6f9</color>
+    <color name="colorMenuPremature">#3949AB</color>
+    <color name="defaultTextColor">#9F9F9F</color>
+    <color name="blueTextColor">#1DA1F2</color>
+
+</resources>

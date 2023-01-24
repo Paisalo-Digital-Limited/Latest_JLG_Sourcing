@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "net.softeksol.seil.groupfin.sbicolending",
+  "variantName": "SBIColendingRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 10,
+      "versionName": "10.0",
+      "outputFile": "app-SBIColending-release.apk"
+    }
+  ],
+  "elementType": "File"
+}
