@@ -21,7 +21,7 @@ public class BorrowerRecViewHolder extends RecyclerView.ViewHolder {
     public final TextView mFiId;
     public final TextView mMobile;
     public final TextView mCreator;
-    public final CardView mainCardBG;
+    public final ConstraintLayout mainCardBG;
 
     public Borrower mItem;
 
@@ -34,7 +34,7 @@ public class BorrowerRecViewHolder extends RecyclerView.ViewHolder {
         mFiId = (TextView) view.findViewById(R.id.itemLayoutCustomerFiId);
         mMobile = (TextView) view.findViewById(R.id.itemLayoutCustomerMobile);
         mCreator = (TextView) view.findViewById(R.id.itemLayoutCustomerCreator);
-        mainCardBG = (CardView) view.findViewById(R.id.mainCardBG);
+        mainCardBG =  view.findViewById(R.id.mainCardBG);
     }
 
     @Override

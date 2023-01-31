@@ -107,7 +107,7 @@ android {
             resValue("string", "appname", "Paisalo Loan App")
             buildConfigField("String", 'DATABASE_NAME', '"SBIPDLCOL"')
             //buildConfigField("String", 'DATABASE_NAME', '"SBIPDL_TEST"')
-            buildConfigField("String",'ESIGN_APP','"net.softeksol.seil.esignseil.paisalo"')
+            buildConfigField("String",'ESIGN_APP','"net.s0ofteksol.seil.esignseil.paisalo"')
             dimension = 'sourcing'
         }
 

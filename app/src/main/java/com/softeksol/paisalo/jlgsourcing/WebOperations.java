@@ -95,9 +95,10 @@ public class WebOperations {
 
     public static void setHttpHeadersJson(Context context, AsyncHttpClient client, Boolean setBearer) {
         setHttpHeaders(context, client, setBearer);
-        client.addHeader("accept", "application/json");
+            client.addHeader("accept", "application/json");
         client.addHeader("access", "application/json");
         client.addHeader("procname", BuildConfig.PROC_NAME);
+        Log.d("TAG PROC", "setHttpHeadersJson: "+BuildConfig.PROC_NAME);
         //client.addHeader("content-type", "application/json;charset=utf-8");
     }
 
@@ -136,6 +137,7 @@ public class WebOperations {
         client.addHeader("dbname", IglPreferences.getPrefString(context, SEILIGL.DATABASE_NAME, ""));
         client.addHeader("userid", IglPreferences.getPrefString(context, SEILIGL.USER_ID, ""));
         client.addHeader("procname", BuildConfig.PROC_NAME);
+
         client.setTimeout(700000);
 
 
@@ -219,6 +221,7 @@ public class WebOperations {
             AsyncHttpClient client = new AsyncHttpClient();
             client.setThreadPool(Executors.newSingleThreadExecutor());
             setHttpHeadersJson(context, client, true);
+            Log.d("Url", url+"///post entity:///"+entity+"/////response hendler:"+responseHandler);
             client.post(context, url, entity, "application/json", responseHandler);
             //client.getLogInterface().setLoggingEnabled(1);
             //client.setLoggingEnabled(true);
@@ -262,6 +265,7 @@ public class WebOperations {
             client.addHeader("procname", BuildConfig.PROC_NAME);
             Log.d("Response",url);
             setHttpHeadersJson(context, client, true);
+            Log.d("Url", url+"/// post entity:///"+entity+"/////response hendler:"+responseHandler);
             client.post(context, url, entity, "application/json", responseHandler);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -272,6 +276,7 @@ public class WebOperations {
         try {
             String url = IglPreferences.getPrefString(context, SEILIGL.BASE_URL, "") + relativeUrl;
             StringEntity entity = new StringEntity(Utils.cleanTextContent(jsonString));
+            Log.d("Url", url+"///posrt entity:///"+entity+"/////response hendler:"+responseHandler);
             client.post(context, url, entity, "application/json", responseHandler);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -280,6 +285,7 @@ public class WebOperations {
 
     public void postEntity(Context context, AsyncHttpClient client, String relativeUrl, JsonStreamerEntity jsonStreamerEntity, ResponseHandlerInterface responseHandler) {
         String url = IglPreferences.getPrefString(context, SEILIGL.BASE_URL, "") + relativeUrl;
+        Log.d("Url", url+"///jsonStreamerEntity:///"+jsonStreamerEntity+"/////response hendler:"+responseHandler);
         client.post(context, url, jsonStreamerEntity, "application/json", responseHandler);
     }
 
@@ -289,6 +295,7 @@ public class WebOperations {
             AsyncHttpClient client = new AsyncHttpClient();
             client.setThreadPool(Executors.newSingleThreadExecutor());
             setHttpHeadersJson(context, client, true);
+            Log.d("Url", url+"///post entity:///"+entity+"/////response hendler:"+responseHandler);
             client.post(context, url, entity, "application/json", responseHandler);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -316,6 +323,7 @@ public class WebOperations {
         client.setThreadPool(Executors.newSingleThreadExecutor());
         setHttpHeadersJson(context, client, true);
         //Log.d("Url", url);
+        Log.d("Url", url+"///post Params:///"+params+"/////response hendler:"+responseHandler);
         client.post(context, url, params, responseHandler);
     }
 
@@ -329,6 +337,7 @@ public class WebOperations {
             setHttpHeadersJson(context, client, true);
             //Log.d("Url", url);
             //Log.d("JsonData",jsonString);
+            Log.d("Url", url+"///entity:///"+entity+"/////response hendler:"+responseHandler);
             client.get(context, url, entity, "application/json", responseHandler);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -348,6 +357,7 @@ public class WebOperations {
                 client.addHeader(header.getName(), header.getValue());
             }
             //setHttpHeaders(context,client, true);
+            Log.d("Url", url+"///Params:///"+params+"/////response hendler:"+responseHandler);
             client.get(context, url, params, responseHandler);
         } catch (Exception e) {
             e.printStackTrace();
@@ -360,7 +370,7 @@ public class WebOperations {
             AsyncHttpClient client = new AsyncHttpClient();
             client.setThreadPool(Executors.newSingleThreadExecutor());
             setHttpHeaders(context, client, true);
-            Log.d("Url", url);
+            Log.d("Url", url+"///Params:///"+params+"/////response hendler:"+responseHandler);
             //Log.d("JsonData",jsonString);
             client.get(context, url, params, responseHandler);
         } catch (Exception e) {
@@ -375,6 +385,7 @@ public class WebOperations {
             setHttpHeaders(context, client, true);
             //Log.d("Url", url);
             //Log.d("JsonData",jsonString);
+            Log.d("Url", url+"///Params:///"+params+"/////response hendler:"+responseHandler);
             client.get(context, url, params, responseHandler);
         } catch (Exception e) {
             e.printStackTrace();

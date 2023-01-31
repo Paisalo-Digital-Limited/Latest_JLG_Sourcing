@@ -73,7 +73,7 @@ public class ActivityLoanApplication extends AppCompatActivity implements
         setSupportActionBar(toolbar);
 
         fragments = new ArrayList<>();
-        loadFragments();
+            loadFragments();
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new AdapterFragmentPager(getSupportFragmentManager(), fragments);

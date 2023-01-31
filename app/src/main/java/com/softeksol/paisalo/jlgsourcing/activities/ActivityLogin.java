@@ -158,9 +158,9 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
                     permissionCheck();
                 }
 
-                Log.d("CHeckingDatabaseNew1",IglPreferences.getPrefString(ActivityLogin.this, SEILIGL.DATABASE_NAME, ""));
-                Log.d("TAG  + devId",IglPreferences.getPrefString(ActivityLogin.this, SEILIGL.DEVICE_ID, ""));
-                Log.d("APPLICATION_ID1",BuildConfig.APPLICATION_ID+"");
+                Log.d("TAG",IglPreferences.getPrefString(ActivityLogin.this, SEILIGL.DATABASE_NAME, ""));
+                Log.d("TAG",IglPreferences.getPrefString(ActivityLogin.this, SEILIGL.DEVICE_ID, ""));
+                Log.d("TAG",SEILIGL.USER_ID+"");
 
 
                 dataAsyncResponseHandler = new DataAsyncResponseHandler(ActivityLogin.this, "Logging in ...") {
@@ -284,6 +284,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
 
                     }
                 };
+
                 (new WebOperations()).getAccessToken(ActivityLogin.this, UserName, Password, dataAsyncResponseHandler);
 
             }
