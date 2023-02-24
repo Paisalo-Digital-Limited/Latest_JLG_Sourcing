@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.FragmentBorrowerPersonal_Additional">
 
     <ScrollView
@@ -25,7 +26,7 @@
                     android:textSize="14dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Agriculture Income" />
+                    android:text="Agriculture Income (monthly)" />
 
                 <Spinner
                     android:id="@+id/spinAgriIncome"
@@ -43,7 +44,7 @@
                     android:textSize="14dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Income" />
+                    android:text="Income (monthly)" />
 
                 <Spinner
                     android:id="@+id/spinIncome"
@@ -60,10 +61,11 @@
                     android:textSize="14dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Land Hold" />
+                    android:text="Land Hold (Bigha)" />
 
                 <EditText
                     android:id="@+id/editLandHold"
+                    android:inputType="numberDecimal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -128,7 +130,7 @@
                     android:textSize="14dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Annual Income" />
+                    android:text="Annual Income (Agriculture + income + other income)" />
 
                 <Spinner
                     android:id="@+id/spinAnnualIncome"
@@ -148,6 +150,8 @@
                     android:text="Place of Birth" />
 
                 <EditText
+                    android:inputType="text"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                     android:id="@+id/editPlaceOfBirth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -166,6 +170,7 @@
                     android:text="Email Id" />
 
                 <EditText
+                    android:inputType="textEmailAddress"
                     android:id="@+id/editMailId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -199,10 +204,26 @@
                     android:layout_height="wrap_content"
                     android:text="Form60 Transaction Date" />
 
-                <EditText
-                    android:id="@+id/editFORM60_TNX_DT"
+
+                <LinearLayout
+                    android:layout_gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:layout_weight="1"
+                        android:inputType="date"
+                        android:id="@+id/editFORM60_TNX_DT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:id="@+id/imgViewCal"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/calendar"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tilUidName" />
+                </LinearLayout>
             </LinearLayout>
 
 
@@ -212,15 +233,31 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:textSize="14dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Form60 Submission Date" />
+                    android:text="Form60 Submission Date"
+                    android:textSize="14dp" />
 
-                <EditText
-                    android:id="@+id/editFORM60_SUBMISSIONDATE"
+
+
+                <LinearLayout
+                    android:layout_gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/editFORM60_SUBMISSIONDATE"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:inputType="date"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:id="@+id/imgViewCal2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/calendar"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tilUidName" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -253,6 +290,8 @@
                     android:text="Mother Title" />
 
                 <EditText
+                    android:inputType="textPersonName"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                     android:id="@+id/editMOTHER_TITLE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -266,11 +305,14 @@
 
                 <TextView
                     android:textSize="14dp"
+                    android:inputType="textPersonName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mother First Name" />
 
                 <EditText
+                    android:inputType="textPersonName"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                     android:id="@+id/editMOTHER_FIRST_NAME"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -290,6 +332,8 @@
                     android:text="Mother Middle Name" />
 
                 <EditText
+                    android:inputType="textPersonName"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                     android:id="@+id/editMOTHER_MIDDLE_NAME"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -310,6 +354,8 @@
                     android:text="Mother Last Name" />
 
                 <EditText
+                    android:inputType="textPersonName"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                     android:id="@+id/editMOTHER_LAST_NAME"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -323,11 +369,15 @@
 
                 <TextView
                     android:textSize="14dp"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mother Maiden Name" />
 
                 <EditText
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+
+                    android:inputType="textPersonName"
                     android:id="@+id/editMOTHER_MAIDEN_NAME"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -347,6 +397,8 @@
                         android:text="Spouse Title" />
 
                     <EditText
+                        android:inputType="textPersonName"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                         android:id="@+id/editSPOUSE_TITLE"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -365,7 +417,9 @@
                         android:text="Spouse First Name" />
 
                     <EditText
+                        android:inputType="textPersonName"
                         android:id="@+id/editSPOUSE_FIRST_NAME"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
@@ -384,7 +438,9 @@
                         android:text="Spouse Middle Name" />
 
                     <EditText
+                        android:inputType="textPersonName"
                         android:id="@+id/editSPOUSE_MIDDLE_NAME"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
@@ -404,7 +460,9 @@
                     android:text="Spouse Last Name" />
 
                 <EditText
+                    android:inputType="textPersonName"
                     android:id="@+id/editSPOUSE_LAST_NAME"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -440,6 +498,8 @@
                     android:text="Applicant Title" />
 
                 <EditText
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+                    android:inputType="textPersonName"
                     android:id="@+id/editAPPLICNT_TITLE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -510,6 +570,8 @@
                 <EditText
                     android:id="@+id/editFATHER_TITLE"
                     android:layout_width="match_parent"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
@@ -527,6 +589,8 @@
 
                 <EditText
                     android:id="@+id/editFather_FIRST_NAME"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -546,6 +610,8 @@
 
                 <EditText
                     android:id="@+id/editFATHER_MIDDLE_NAME"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -565,6 +631,27 @@
                 <EditText
                     android:id="@+id/editFATHER_LAST_NAME"
                     android:layout_width="match_parent"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textSize="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Years in Business" />
+
+                <EditText
+                    android:id="@+id/editYearsInBusiness"
+                    android:layout_width="match_parent"
+                    android:inputType="number"
                     android:layout_height="wrap_content" />
             </LinearLayout>
 

@@ -80,7 +80,7 @@
                 android:text="@string/applicant_bank_account_type" />
 
             <Spinner
-                android:id="@+id/spinLoanAppFinancePurposePrimary"
+                android:id="@+id/spinLoanAppFinanceAccountType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -112,7 +112,7 @@
                 android:text="@string/loan_purpose" />
 
             <Spinner
-                android:id="@+id/spinLoanAppFinanceAccountType"
+                android:id="@+id/spinLoanAppFinancePurposePrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>

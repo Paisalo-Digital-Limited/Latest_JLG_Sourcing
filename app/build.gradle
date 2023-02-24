@@ -49,7 +49,7 @@ android {
             //buildConfigField("String", 'BASE_URL', '"http://agra.seil.in:8087/PLServicev82/"')
             buildConfigField("String", 'BASE_URL', '"https://agra.seil.in:8444/PLServicev82/"')
             //buildConfigField("String", 'BASE_URL', '"https://agra.paisalo.in:8445/PLServiceV82/"')
-            //buildConfigField("String", 'BASE_URL', '"http://kailash.seil.in:8086/PLService/"')
+//            buildConfigField("String", 'BASE_URL', '"http://kailash.seil.in:8086/PLService/"')
             buildConfigField("String", 'EKYC_FETCH_URL', '"http://agra.seil.in:8085/SeilKycESign/api/KycDataSZenApi/GetEKyc"')
 
             buildConfigField("String[]", 'AUTH_TYPE', '{"FP","OTP"}')
@@ -91,7 +91,7 @@ android {
 
         SBIColending {
             versionCode 10
-            versionName "10.0"
+            versionName "10.1"
             applicationId "net.softeksol.seil.groupfin.sbicolending"
             resValue("string", "appname", "SBI-CoLending")
             buildConfigField("String", 'DATABASE_NAME', '"SBIPDLCOL"')
@@ -171,4 +171,5 @@ dependencies {
     implementation 'com.scottyab:rootbeer-lib:0.1.0'
 
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.karumi:dexter:6.2.2'
 }

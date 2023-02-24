@@ -38,6 +38,11 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.reflect.TypeToken;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.nabinbhandari.android.permissions.PermissionHandler;
 import com.nabinbhandari.android.permissions.Permissions;
 import com.raizlabs.android.dbflow.config.FlowManager;
@@ -110,9 +115,8 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
 
         getSupportActionBar().setTitle(getString(R.string.appname) + " (" + BuildConfig.VERSION_NAME + ")");
 
-        if (checkAndRequestPermissions()){
+        if (requestPermissions()){
 //            getDeviceID();
-            Toast.makeText(this, "All permissions are granted", Toast.LENGTH_SHORT).show();
         }else {
             permissionCheck();
         }
@@ -127,7 +131,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
             public void onClick(View view) {
                 UserName = ((EditText) findViewById(R.id.til_login_username)).getText().toString();
 
-                if (checkAndRequestPermissions()){
+                if (requestPermissions()){
                     getDeviceID();
                 }else {
                     permissionCheck();
@@ -152,7 +156,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
                  UserName = ((EditText) findViewById(R.id.til_login_username)).getText().toString();
                 Password = ((EditText) findViewById(R.id.etLoginPassword)).getText().toString();
 
-                if (checkAndRequestPermissions()){
+                if (requestPermissions()){
                     getDeviceID();
                 }else {
                     permissionCheck();
@@ -297,14 +301,10 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         userName.setError("Must be 10 Characters to share Device ID");
 
        password = (EditText) findViewById(R.id.etLoginPassword);
-        //tilPassowrd.setErrorEnabled(true);
-        password.setError("Min 5 chars required");
-
-        //Displaying EditText Error
-
-        database = (Spinner) findViewById(R.id.database);
-        userName.setError("Required");
-        userName.addTextChangedListener(new MyTextWatcher(userName) {
+       password.setError("Min 5 chars required");
+       database = (Spinner) findViewById(R.id.database);
+       userName.setError("Required");
+       userName.addTextChangedListener(new MyTextWatcher(userName) {
             @Override
             public void validate(EditText editText, String text) {
                 btnShareDeviceID.setEnabled(false);
@@ -657,7 +657,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         if (permissionSendMessage != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.CAMERA);
 
-        } if (permissionSendMessage != PackageManager.PERMISSION_GRANTED) {
+        } if (readPhoneState != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.READ_PHONE_STATE);
         }
         if (!listPermissionsNeeded.isEmpty()) {
@@ -666,8 +666,81 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         }
         return true;
     }
+    private boolean requestPermissions() {
+        final boolean[] perMissionFlag = {false};
+        // below line is use to request permission in the current activity.
+        // this method is use to handle error in runtime permissions
+        Dexter.withActivity(this)
+                // below line is use to request the number of permissions which are required in our app.
+                .withPermissions(Manifest.permission.CAMERA,
+                        // below is the list of permissions
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.READ_PHONE_STATE)
+                // after adding permissions we are calling an with listener method.
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        // this method is called when all permissions are granted
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            // do you work now
+                            permissionCheck();
+                            perMissionFlag[0] =true;
+
+                        }
+                        // check for permanent denial of any permission
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            // permission is denied permanently, we will show user a dialog message.
+                            showSettingsDialog();
+                            perMissionFlag[0] =false;
+
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        // this method is called when user grants some permission and denies some of them.
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).withErrorListener(error -> {
+                    // we are displaying a toast message for error message.
+                    Toast.makeText(getApplicationContext(), "Error occurred! ", Toast.LENGTH_SHORT).show();
+                    handlePermissionException();
+                    perMissionFlag[0] =false;
+
+                })
+                // below line is use to run the permissions on same thread and to check the permissions
+                .onSameThread().check();
+        return perMissionFlag[0];
 
 
+    }
+    private void showSettingsDialog() {
+        // we are displaying an alert dialog for permissions
+        AlertDialog.Builder builder = new AlertDialog.Builder(ActivityLogin.this);
+
+        // below line is the title for our alert dialog.
+        builder.setTitle("Need Permissions");
+
+        // below line is our message for our dialog
+        builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.");
+        builder.setPositiveButton("GOTO SETTINGS", (dialog, which) -> {
+            // this method is called on click on positive button and on clicking shit button
+            // we are redirecting our user from our app to the settings page of our app.
+            dialog.cancel();
+            // below is the intent from which we are redirecting our user.
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            Uri uri = Uri.fromParts("package", getPackageName(), null);
+            intent.setData(uri);
+            startActivityForResult(intent, 101);
+        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> {
+            // this method is called when user click on negative button.
+            dialog.cancel();
+            handlePermissionException();
+        });
+        // below line is used to display our dialog
+        builder.show();
+    }
     private void permissionCheck() {
 
 
@@ -684,26 +757,13 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
             public void onGranted() {
                 // do your task.
 
-                if (ActivityCompat.checkSelfPermission(ActivityLogin.this,
-                        Manifest.permission.READ_PHONE_STATE)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    handlePermissionException();
-                }
-                else {
+//                if (ActivityCompat.checkSelfPermission(ActivityLogin.this,
+//                        Manifest.permission.READ_PHONE_STATE)
+//                        != PackageManager.PERMISSION_GRANTED) {
+//                    handlePermissionException();
+//                }
+//                else {
                     getDeviceID();
-                }
-
-                // If you have access to the external storage, do whatever you nee
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-//                    if (Environment.isExternalStorageManager()){
-//
-//                       getDeviceID();
-//
-//    // If you don't have access, launch a new activity to show the user the system's dialog
-//    // to allow access to the external storage
-//                    }else{
-//                      handlePermissionException();
-//                    }
 //                }
 
             }
@@ -783,7 +843,6 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
                     Build.TAGS.length()%10 + Build.TYPE.length()%10 +
                     Build.USER.length()%10 ; //13 digits
 
-            Toast.makeText(this, ""+lastThreeChars, Toast.LENGTH_SHORT).show();
 
 
 

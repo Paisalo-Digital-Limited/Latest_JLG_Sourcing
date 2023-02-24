@@ -128,6 +128,7 @@ public class ActivityOperationSelect extends AppCompatActivity {
                         intent = new Intent(ActivityOperationSelect.this, ActivityManagerSelect.class);
                         break;
                     case 3:
+                        Log.d("TAG", "onSuccess: working1 ");
                         intent = new Intent(ActivityOperationSelect.this, ActivityManagerSelect.class);
                         break;
                     case 4:
@@ -140,6 +141,7 @@ public class ActivityOperationSelect extends AppCompatActivity {
 
                 assert intent != null;
                 intent.putExtra(Global.OPTION_ITEM, operationItem);
+                Log.d("TAG", "onSuccess: working1 ");
                 intent.putExtra("Title", operationItem.getOprationName());
                 startActivity(intent);
 
@@ -154,6 +156,7 @@ public class ActivityOperationSelect extends AppCompatActivity {
         params.add("UserId", IglPreferences.getPrefString(this, SEILIGL.USER_ID, ""));
         params.add("IMEINO", IglPreferences.getPrefString(this, SEILIGL.DEVICE_IMEI, "0"));
         //params.add("Operation", operationItem.getUrlEndpoint());
+        Log.d("TAG", "updateManagers: "+params);
         (new WebOperations()).getEntity(this, operationItem.getUrlController(), operationItem.getUrlEndpoint(), params, dataAsyncHttpResponseHandler);
     }
 

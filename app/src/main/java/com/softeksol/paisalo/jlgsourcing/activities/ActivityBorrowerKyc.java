@@ -58,6 +58,7 @@ import com.softeksol.paisalo.jlgsourcing.entities.dto.BorrowerDTO;
 import com.softeksol.paisalo.jlgsourcing.entities.dto.OldFIById;
 import com.softeksol.paisalo.jlgsourcing.handlers.AsyncResponseHandler;
 import com.softeksol.paisalo.jlgsourcing.handlers.DataAsyncResponseHandler;
+import com.softeksol.paisalo.jlgsourcing.location.GpsTracker;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -558,6 +559,7 @@ public class ActivityBorrowerKyc extends AppCompatActivity implements View.OnCli
     }
 
     private void getDataFromView(View v) {
+        GpsTracker gpsTracker=new GpsTracker(ActivityBorrowerKyc.this);
         borrower.aadharid = Utils.getNotNullText(tietAadharId);
         borrower.setNames(Utils.getNotNullText(tietName));
         borrower.Age = Utils.getNotNullInt(tietAge);
@@ -588,6 +590,9 @@ public class ActivityBorrowerKyc extends AppCompatActivity implements View.OnCli
         borrower.Business_Detail = ((RangeCategory) acspBusinessDetail.getSelectedItem()).RangeCode;
         borrower.Loan_Reason = ((RangeCategory) acspLoanPurpose.getSelectedItem()).RangeCode;
         borrower.bank_ac_no = Utils.getNotNullText(tietBankAccount);
+        borrower.Latitude= (float) gpsTracker.getLatitude();
+        borrower.Longitude= (float) gpsTracker.getLongitude();
+//        borrower.T_ph3=
 
     }
 
@@ -682,7 +687,6 @@ public class ActivityBorrowerKyc extends AppCompatActivity implements View.OnCli
                 int maxDimentions = (documentPic.checklistid == 0 ? 300 : 1000);
                 Uri imageUri = CameraUtils.finaliseImageCropUri(resultCode, data, maxDimentions, error, false);
                 File tempCroppedImage = new File(imageUri.getPath());
-
                 if (tempCroppedImage.length() > 100) {
                     if (borrower != null) {
                         (new File(this.uriPicture.getPath())).delete();
@@ -1082,7 +1086,7 @@ public class ActivityBorrowerKyc extends AppCompatActivity implements View.OnCli
                     (new WebOperations()).postEntity(this, "posfi", "savefi", borrowerJsonString, dataAsyncResponseHandler);
                 }
             } else {
-                Utils.alert(this, "There is at least one errors in the Aadhar Data");
+                Utils.alert(this, "There is at least one errors in the Aadhaar Data");
             }
         }
     }

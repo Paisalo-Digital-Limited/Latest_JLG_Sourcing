@@ -126,9 +126,9 @@ public class FragmentBorrowerFinance extends AbsFragment implements View.OnClick
         activity.setNavOnClikListner(imgViewRight);
 
         spinnerPurpose = (Spinner) v.findViewById(R.id.spinLoanAppFinancePurposePrimary);
-        spinnerPurpose.setAdapter(rlaBankType);
+        spinnerPurpose.setAdapter(rlaPurposeType);
         spinnerBankAcType = (Spinner) v.findViewById(R.id.spinLoanAppFinanceAccountType);
-        spinnerBankAcType.setAdapter(rlaPurposeType);
+        spinnerBankAcType.setAdapter(rlaBankType);
         spinnerLoanAmount = (Spinner) v.findViewById(R.id.spinLoanAppFinanceLoanAmount);
         spinnerLoanAmount.setAdapter(rlaLoanAmount);
         spinnerLoanDuration = (Spinner) v.findViewById(R.id.spinLoanAppFinanceDuration);
@@ -200,7 +200,7 @@ public class FragmentBorrowerFinance extends AbsFragment implements View.OnClick
         Utils.setSpinnerPosition(spinnerPurpose, borrower.Loan_Reason);
         Utils.setSpinnerPosition(spinnerSchemeType, borrower.T_ph3);
 
-        spinnerPurpose.setEnabled(borrower.Loan_Reason.length() < 3);
+        spinnerBankAcType.setEnabled(borrower.Loan_Reason.length() < 3);
         etBankAccount.setText(Utils.NullIf(borrower.bank_ac_no, ""));
         etBankAccount.setEnabled(Utils.NullIf(borrower.bank_ac_no, "").length() < 3);
         Utils.setSpinnerPosition(spinnerBankAcType, borrower.BankAcType);

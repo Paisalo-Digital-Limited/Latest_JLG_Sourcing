@@ -510,7 +510,7 @@ public class ActivityFinancing extends AppCompatActivity
             return;
         }
 
-        final AsyncResponseHandler guarantorAsyncResponseHandler = new AsyncResponseHandler(this, "Loan Financing\nSubmittiong Loan Application", "Updating Guarantor Information") {
+        final AsyncResponseHandler guarantorAsyncResponseHandler = new AsyncResponseHandler(this, "Loan Financing\nSubmitting Loan Application", "Updating Guarantor Information") {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String jsonString = new String(responseBody);
@@ -563,7 +563,52 @@ public class ActivityFinancing extends AppCompatActivity
         borrower.SEL = String.valueOf(Integer.parseInt(borrower.SEL) + 1);
         if (borrower.Approved != null && borrower.Approved.equals("NPR"))
             borrower.Approved = null;
-        (new WebOperations()).postEntity(context, "posfi", "updatefi", WebOperations.convertToJson(borrower), dataAsyncResponseHandler);
+
+        String ErrorMsg="";
+        Log.d("TAG", "submitLoanApplication: "+borrower.fiExtra.MOTHER_FIRST_NAME.equals(""));
+        if (borrower.fiExtra.MOTHER_FIRST_NAME.equals("") || borrower.fiExtra.MOTHER_FIRST_NAME.equals(null)){
+            ErrorMsg=ErrorMsg+"\n>> Please enter mother name";
+        } if (borrower.fiExtra.FATHER_FIRST_NAME.equals("") || borrower.fiExtra.FATHER_FIRST_NAME.equals(null)){
+            ErrorMsg=ErrorMsg+"\n>> Please enter father name";
+        } if(Integer.valueOf(borrower.fiExtra.ANNUAL_INCOME)!=((12*Integer.valueOf(borrower.fiExtra.AGRICULTURAL_INCOME))+(12*Integer.valueOf(borrower.fiExtra.SOC_ATTR_2_INCOME)+(Integer.valueOf(borrower.fiExtra.OTHER_THAN_AGRICULTURAL_INCOME))))){
+            ErrorMsg=ErrorMsg+"\n>> Please enter proper details of income";
+        }
+
+
+        Log.d("TAG", "submitLoanApplication: "+borrower.fiExtra);
+        if (!ErrorMsg.equals("")){
+            AlertDialog alertDialog=new AlertDialog.Builder(this)
+                    .setTitle("Data of "+borrower.getBorrowerName()+" is not proper")
+                    .setMessage(ErrorMsg)
+
+                    // Specifying a listener allows you to take an action before dismissing the dialog.
+                    // The dialog is automatically dismissed when a dialog button is clicked.
+                    .setPositiveButton("I'm filling", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                           dialog.dismiss();
+                           finish();
+                        }
+                    })
+
+                    // A null listener allows the button to dismiss the dialog and take no further action.
+                    .setNegativeButton("No issue", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                            Utils.showSnakbar(findViewById(android.R.id.content),borrower.getBorrowerName()+"\'s data is not saved kindly fill data properly!!");
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+
+        }else{
+            Log.d("TAG", "submitLoanApplication: "+borrower);
+            (new WebOperations()).postEntity(context, "posfi", "updatefi", WebOperations.convertToJson(borrower), dataAsyncResponseHandler);
+
+        }
+
+
+
     }
 
     @Override
@@ -711,7 +756,7 @@ public class ActivityFinancing extends AppCompatActivity
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
                     String jsonString = new String(responseBody);
-                    //Log.d("Pending FI List", jsonString);
+                    Log.d("Pending FI List", jsonString);
                     Type listType = new TypeToken<List<PendingFi>>() {
                     }.getType();
                     pendingFis = WebOperations.convertToObjectArray(jsonString, listType);
@@ -760,7 +805,7 @@ public class ActivityFinancing extends AppCompatActivity
                     jsonString = jsonString
                             .replace("{\"Fi", ",\"fi").replace(",\"Fi", ",\"fi");
 
-                    //Log.d("Borrower from JSON ", jsonString);
+                    Log.d("Borrower from JSON ", jsonString);
                     BorrowerDTO borrowerDto = WebOperations.convertToObject(jsonString, BorrowerDTO.class);
                     //Log.d("Borrower from DTO ", borrowerDto.toString());
                     //borrower=borrowerDto.getBorrower();

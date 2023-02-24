@@ -312,7 +312,7 @@ public class FragmentCollection extends AbsCollectionFragment {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 Toast.makeText(getContext(), error.getMessage() + "\n" + (new String(responseBody)), Toast.LENGTH_LONG).show();
-                //Log.d("eKYC Response",error.getLocalizedMessage());
+                Log.d("eKYC Response",error.getLocalizedMessage());
             }
         };
 

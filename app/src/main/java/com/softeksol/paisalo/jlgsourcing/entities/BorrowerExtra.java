@@ -258,6 +258,10 @@ public class BorrowerExtra extends BaseModel implements Serializable {
     @Column
     public String FATHER_LAST_NAME;
 
+     @Expose
+    @Column
+    public String Years_In_Business;
+
 
 
     @Override
@@ -309,8 +313,8 @@ public class BorrowerExtra extends BaseModel implements Serializable {
                 ", SPOUSE_FIRST_NAME='"+SPOUSE_FIRST_NAME+'\''+
         ", SPOUSE_MIDDLE_NAME='"+SPOUSE_MIDDLE_NAME+'\''+
                 ", SPOUSE_LAST_NAME='"+SPOUSE_LAST_NAME+'\''+
-        ", FORM60SUBMISSIONDATE='"+FORM60SUBMISSIONDATE+'\''+
-                ", PAN_APPLIED_FLAG='"+PAN_APPLIED_FLAG+'\''+
+        ", FORM60SUBMISSIONDATE='"+FORM60_SUBMISSIONDATE+'\''+
+                ", PAN_APPLIED_FLAG='"+FORM60_PAN_APPLIED_YN+'\''+
         ", OTHER_THAN_AGRICULTURAL_INCOME='"+OTHER_THAN_AGRICULTURAL_INCOME+'\''+
                 ", APPLICNT_TITLE='"+APPLICNT_TITLE+'\''+
         ", MARITAL_STATUS='"+MARITAL_STATUS+'\''+
@@ -320,6 +324,7 @@ public class BorrowerExtra extends BaseModel implements Serializable {
         ", FATHER_FIRST_NAME='"+FATHER_FIRST_NAME+'\''+
                 ", FATHER_MIDDLE_NAME='"+FATHER_MIDDLE_NAME+'\''+
         ", FATHER_LAST_NAME='"+FATHER_LAST_NAME+'\''+
+                ", years_in_business='"+Years_In_Business+'\''+
         '}';
     }
 
@@ -359,7 +364,7 @@ public class BorrowerExtra extends BaseModel implements Serializable {
        borrowerExtraDTO.setVISUALLY_IMPAIRED_YN(this.VISUALLY_IMPAIRED_YN);
                borrowerExtraDTO.setFORM60_TNX_DT(this.FORM60_TNX_DT);
        borrowerExtraDTO.setFORM60_SUBMISSIONDATE(this.FORM60_SUBMISSIONDATE);
-               borrowerExtraDTO.setFORM60_PAN_APPLIED_YN(this.FORM60_PAN_APPLIED_YN);
+               borrowerExtraDTO.setFORM60_PAN_APPLIED_YN(this.PAN_APPLIED_FLAG);
        borrowerExtraDTO.setMOTHER_TITLE(this.MOTHER_TITLE);
                borrowerExtraDTO.setMOTHER_FIRST_NAME(this.MOTHER_FIRST_NAME);
        borrowerExtraDTO.setMOTHER_MIDDLE_NAME(this.MOTHER_MIDDLE_NAME);
@@ -369,7 +374,7 @@ public class BorrowerExtra extends BaseModel implements Serializable {
        borrowerExtraDTO.setSPOUSE_FIRST_NAME(this.SPOUSE_FIRST_NAME);
                borrowerExtraDTO.setSPOUSE_MIDDLE_NAME(this.SPOUSE_MIDDLE_NAME);
        borrowerExtraDTO.setSPOUSE_LAST_NAME(this.SPOUSE_LAST_NAME);
-               borrowerExtraDTO.setFORM60SUBMISSIONDATE(this.FORM60SUBMISSIONDATE);
+               borrowerExtraDTO.setFORM60SUBMISSIONDATE(this.FORM60_SUBMISSIONDATE);
        borrowerExtraDTO.setPAN_APPLIED_FLAG(this.PAN_APPLIED_FLAG);
                borrowerExtraDTO.setOTHER_THAN_AGRICULTURAL_INCOME(this.OTHER_THAN_AGRICULTURAL_INCOME);
        borrowerExtraDTO.setAPPLICNT_TITLE(this.APPLICNT_TITLE);
@@ -380,6 +385,7 @@ public class BorrowerExtra extends BaseModel implements Serializable {
                borrowerExtraDTO.setFATHER_FIRST_NAME(this.FATHER_FIRST_NAME);
        borrowerExtraDTO.setFATHER_MIDDLE_NAME(this.FATHER_MIDDLE_NAME);
                borrowerExtraDTO.setFATHER_LAST_NAME(this.FATHER_LAST_NAME);
+               borrowerExtraDTO.setYears_in_business(this.Years_In_Business);
 
 
         return borrowerExtraDTO;
@@ -444,5 +450,6 @@ public class BorrowerExtra extends BaseModel implements Serializable {
         this.FATHER_FIRST_NAME=borrowerExtraDTO.getFATHER_FIRST_NAME();
                 this.FATHER_MIDDLE_NAME=borrowerExtraDTO.getFATHER_MIDDLE_NAME();
         this.FATHER_LAST_NAME=borrowerExtraDTO.getFATHER_LAST_NAME();
+        this.Years_In_Business=borrowerExtraDTO.getYears_in_business();
     }
 }

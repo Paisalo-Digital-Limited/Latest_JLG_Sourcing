@@ -100,7 +100,7 @@ public class ActivityCollection extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Log.d("DueData Error", new String(responseBody));
+                Log.d("DueData Error", error.getMessage());
             }
         };
 

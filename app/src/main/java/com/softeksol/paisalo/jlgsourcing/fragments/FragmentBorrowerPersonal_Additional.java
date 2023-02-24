@@ -1,16 +1,20 @@
 package com.softeksol.paisalo.jlgsourcing.fragments;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -24,8 +28,11 @@ import com.softeksol.paisalo.jlgsourcing.entities.BorrowerExtra;
 import com.softeksol.paisalo.jlgsourcing.entities.RangeCategory;
 import com.softeksol.paisalo.jlgsourcing.entities.RangeCategory_Table;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.regex.MatchResult;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,15 +48,21 @@ public class FragmentBorrowerPersonal_Additional extends AbsFragment {
     private ActivityLoanApplication activity;
     private BorrowerExtra borrowerExtra;
     private Borrower borrower;
+    String newDate;
     private OnFragmentBorrowerPersonal_AddInteractionListener mListener;
     // TODO: Rename and change types of parameters
     private String mParam1;
+    private ImageView imgViewCal,ImgViewCal2;
     private String mParam2;
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private int year, month, day;
+    EditText editFORM60_TNX_DT,editFORM60_SUBMISSIONDATE;
     private long borrowerId;
     private AdapterListRange AGRICULTURAL_INCOME, SOC_ATTR_2_INCOME, ANNUAL_INCOME, OTHER_THAN_AGRICULTURAL_INCOME, MARITAL_STATUS, OCCUPATION_TYPE, RESERVATN_CATEGORY;
     private ArrayAdapter<String> SOC_ATTR_4_SPL_ABLD,SOC_ATTR_5_SPL_SOC_CTG,VISUALLY_IMPAIRED_YN,FORM60_PAN_APPLIED_YN;
     ArrayList<String> items=new ArrayList<String>();
-
+    Spinner spinAGRICULTURAL_INCOME,spinSOC_ATTR_2_INCOME,spinSOC_ATTR_4_SPL_ABLD,spinANNUAL_INCOME,spinOTHER_THAN_AGRICULTURAL_INCOME;
 
 
 
@@ -104,18 +117,25 @@ public class FragmentBorrowerPersonal_Additional extends AbsFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_borrower_personal__additional, container, false);
-            items.add("YES");
-            items.add("NO");
-               Spinner spinAGRICULTURAL_INCOME=v.findViewById(R.id.spinAgriIncome);
+        items.add("YES");
+        items.add("NO");
+        imgViewCal=v.findViewById(R.id.imgViewCal);
+        ImgViewCal2=v.findViewById(R.id.imgViewCal2);
+
+        editFORM60_SUBMISSIONDATE=v.findViewById(R.id.editFORM60_SUBMISSIONDATE);
+        editFORM60_TNX_DT=v.findViewById(R.id.editFORM60_TNX_DT);
+        editFORM60_SUBMISSIONDATE.setEnabled(false);
+        editFORM60_TNX_DT.setEnabled(false);
+                spinAGRICULTURAL_INCOME=v.findViewById(R.id.spinAgriIncome);
         AGRICULTURAL_INCOME = new AdapterListRange(this.getContext(), Utils.getList(1, 30, 1, 1000, "Rupees"), true);
                 spinAGRICULTURAL_INCOME.setAdapter(AGRICULTURAL_INCOME);
-        Spinner spinSOC_ATTR_2_INCOME=v.findViewById(R.id.spinIncome);
+                spinSOC_ATTR_2_INCOME=v.findViewById(R.id.spinIncome);
         SOC_ATTR_2_INCOME = new AdapterListRange(this.getContext(), Utils.getList(1, 30, 1, 1000, "Rupees"), true);
             spinSOC_ATTR_2_INCOME.setAdapter(SOC_ATTR_2_INCOME);
-        Spinner spinSOC_ATTR_4_SPL_ABLD=v.findViewById(R.id.spinSpecialAbility);
+         spinSOC_ATTR_4_SPL_ABLD=v.findViewById(R.id.spinSpecialAbility);
         SOC_ATTR_4_SPL_ABLD = new ArrayAdapter<String>(this.getContext(),R.layout.spinner_card_orange,R.id.text_cname, items);
         spinSOC_ATTR_4_SPL_ABLD.setAdapter(SOC_ATTR_4_SPL_ABLD);
-               Spinner spinANNUAL_INCOME=v.findViewById(R.id.spinAnnualIncome);
+                spinANNUAL_INCOME=v.findViewById(R.id.spinAnnualIncome);
         ANNUAL_INCOME = new AdapterListRange(this.getContext(), Utils.getList(1, 30, 1, 12000, "Rupees"), true);
             spinANNUAL_INCOME.setAdapter(ANNUAL_INCOME);
         Spinner spinSOC_ATTR_5_SPL_SOC_CTG=v.findViewById(R.id.spinSpecialSocialCategory);
@@ -127,7 +147,7 @@ public class FragmentBorrowerPersonal_Additional extends AbsFragment {
                Spinner spinFORM60_PAN_APPLIED_YN=v.findViewById(R.id.spinFORM60_PAN_APPLIED_YN);
         FORM60_PAN_APPLIED_YN = new ArrayAdapter<String>(this.getContext(),R.layout.spinner_card_orange,R.id.text_cname, items);
         spinFORM60_PAN_APPLIED_YN.setAdapter(FORM60_PAN_APPLIED_YN);
-               Spinner spinOTHER_THAN_AGRICULTURAL_INCOME=v.findViewById(R.id.spinOTHER_THAN_AGRICULTURAL_INCOME);
+                spinOTHER_THAN_AGRICULTURAL_INCOME=v.findViewById(R.id.spinOTHER_THAN_AGRICULTURAL_INCOME);
         OTHER_THAN_AGRICULTURAL_INCOME = new AdapterListRange(this.getContext(), Utils.getList(1, 30, 1, 12000, "Rupees"), true);
             spinOTHER_THAN_AGRICULTURAL_INCOME.setAdapter(OTHER_THAN_AGRICULTURAL_INCOME);
         Spinner spinMARITAL_STATUS=v.findViewById(R.id.spinMARITAL_STATUS);
@@ -142,28 +162,103 @@ public class FragmentBorrowerPersonal_Additional extends AbsFragment {
         RESERVATN_CATEGORY = new AdapterListRange(this.getContext(),
                 SQLite.select().from(RangeCategory.class).where(RangeCategory_Table.cat_key.eq("caste")).queryList(), false);
                 spinRESERVATN_CATEGORY.setAdapter(RESERVATN_CATEGORY);
-               EditText SOC_ATTR_3_LAND_HOLD= v.findViewById(R.id.editLandHold);
-               EditText EDUCATION_CODE= v.findViewById(R.id.editEducationalCode);
-               EditText PLACE_OF_BIRTH= v.findViewById(R.id.editPlaceOfBirth);
-               EditText EMAIL_ID= v.findViewById(R.id.editMailId);
-               EditText FORM60_TNX_DT= v.findViewById(R.id.editFORM60_TNX_DT);
-               EditText FORM60_SUBMISSIONDATE = v.findViewById(R.id.editFORM60_SUBMISSIONDATE);
-               EditText MOTHER_TITLE= v.findViewById(R.id.editMOTHER_TITLE);
-               EditText MOTHER_FIRST_NAME= v.findViewById(R.id.editMOTHER_FIRST_NAME);
-               EditText MOTHER_MIDDLE_NAME= v.findViewById(R.id.editMOTHER_MIDDLE_NAME);
-               EditText MOTHER_LAST_NAME= v.findViewById(R.id.editMOTHER_LAST_NAME);
-               EditText MOTHER_MAIDEN_NAME= v.findViewById(R.id.editMOTHER_MAIDEN_NAME);
-               EditText SPOUSE_TITLE= v.findViewById(R.id.editSPOUSE_TITLE);
-               EditText SPOUSE_FIRST_NAME= v.findViewById(R.id.editSPOUSE_FIRST_NAME);
-               EditText SPOUSE_MIDDLE_NAME= v.findViewById(R.id.editSPOUSE_MIDDLE_NAME);
-               EditText SPOUSE_LAST_NAME= v.findViewById(R.id.editSPOUSE_LAST_NAME);
-               EditText APPLICNT_TITLE= v.findViewById(R.id.editAPPLICNT_TITLE);
-               EditText FATHER_TITLE= v.findViewById(R.id.editFATHER_TITLE);
-               EditText FATHER_FIRST_NAME= v.findViewById(R.id.editFather_FIRST_NAME);
-               EditText FATHER_MIDDLE_NAME= v.findViewById(R.id.editFATHER_MIDDLE_NAME);
-               EditText FATHER_LAST_NAME= v.findViewById(R.id.editFATHER_LAST_NAME);
+        imgViewCal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDatePickerDialog(v);
+            }
+        });
 
+        ImgViewCal2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDatePickerDialog(v);
+                //showDate(year, month+1, day);
+            }
+        });
         return  v;
+    }
+    public void openDatePickerDialog(final View v) {
+        // Get Current Date
+        Calendar cal=Calendar.getInstance();
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                (view, year, monthOfYear, dayOfMonth) -> {
+                    String selectedDate =year  + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                    SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+
+                    try {
+                        Date date = dt.parse(selectedDate);
+                         newDate= dt.format(date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    switch (v.getId()) {
+                        case R.id.imgViewCal:
+                            editFORM60_TNX_DT.setText(newDate);
+                            break;
+                        case R.id.imgViewCal2:
+                            editFORM60_SUBMISSIONDATE.setText(newDate);
+                            break;
+                    }
+                }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+
+
+        datePickerDialog.getDatePicker().setMaxDate(cal.getTimeInMillis());
+        datePickerDialog.show();
+    }
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0,
+                                      int arg1, int arg2, int arg3) {
+                    // TODO Auto-generated method stub
+                    // arg1 = year
+                    // arg2 = month
+                    // arg3 = day
+                    try {
+                        showDate(arg1, arg2+1, arg3);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+    private DatePickerDialog.OnDateSetListener myDateListener1 = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0,
+                                      int arg1, int arg2, int arg3) {
+                    // TODO Auto-generated method stub
+                    // arg1 = year
+                    // arg2 = month
+                    // arg3 = day
+                    try {
+                        showDate2(arg1, arg2+1, arg3);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+
+    private void showDate(int year, int month, int day) throws ParseException {
+        String todaysDate=day+ "-"+ (month) + "-" + year;
+        SimpleDateFormat curFormater = new SimpleDateFormat("dd-MM-yyyy");
+        Date dateObj = curFormater.parse(todaysDate);
+//        Date date = new Date(year,month,day);
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String strDate= curFormater.format(dateObj);
+        editFORM60_TNX_DT.setText(strDate);
+    }
+
+    private void showDate2(int year, int month, int day) throws ParseException {
+        String todaysDate=day+ "-"+ (month) + "-" + year;
+        SimpleDateFormat curFormater = new SimpleDateFormat("dd-MM-yyyy");
+        Date dateObj = curFormater.parse(todaysDate);
+//        Date date = new Date(year,month,day);
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String strDate= curFormater.format(dateObj);
+        editFORM60_TNX_DT.setText(strDate);
     }
     @Override
     public void onAttach(Context context) {
@@ -202,12 +297,22 @@ public class FragmentBorrowerPersonal_Additional extends AbsFragment {
         Utils.setSpinnerPosition((Spinner) v.findViewById(R.id.spinIncome),borrowerExtra.SOC_ATTR_2_INCOME);
         Utils.setSpinnerPosition((Spinner) v.findViewById(R.id.spinAnnualIncome),borrowerExtra.ANNUAL_INCOME);
         Utils.setSpinnerPosition((Spinner) v.findViewById(R.id.spinOTHER_THAN_AGRICULTURAL_INCOME),borrowerExtra.OTHER_THAN_AGRICULTURAL_INCOME);
-        Utils.setSpinnerPosition((Spinner) v.findViewById(R.id.spinVisuallyImpaired),borrowerExtra.VISUALLY_IMPAIRED_YN);
-        Utils.setSpinnerPosition((Spinner) v.findViewById(R.id.spinSpecialSocialCategory),borrowerExtra.SOC_ATTR_5_SPL_SOC_CTG);
-        Utils.setSpinnerPosition((Spinner) v.findViewById(R.id.spinFORM60_PAN_APPLIED_YN),borrowerExtra.FORM60_PAN_APPLIED_YN);
+        int spinnerPositionVisuallyImpaired= VISUALLY_IMPAIRED_YN.getPosition(borrowerExtra.VISUALLY_IMPAIRED_YN);
+        ((Spinner)v.findViewById(R.id.spinVisuallyImpaired)).setSelection(spinnerPositionVisuallyImpaired);
+
+
+        int spinnerPositionSpecialCategory= SOC_ATTR_5_SPL_SOC_CTG.getPosition(borrowerExtra.SOC_ATTR_5_SPL_SOC_CTG);
+        ((Spinner)v.findViewById(R.id.spinSpecialSocialCategory)).setSelection(spinnerPositionSpecialCategory);
+
+
+        int spinnerPositionPANApplied= FORM60_PAN_APPLIED_YN.getPosition(borrowerExtra.FORM60_PAN_APPLIED_YN);
+        ((Spinner)v.findViewById(R.id.spinFORM60_PAN_APPLIED_YN)).setSelection(spinnerPositionPANApplied);
+
+        int spinnerPositionSpecialAbility= SOC_ATTR_4_SPL_ABLD.getPosition(borrowerExtra.SOC_ATTR_4_SPL_ABLD);
+        ((Spinner)v.findViewById(R.id.spinSpecialAbility)).setSelection(spinnerPositionSpecialAbility);
+
         Utils.setSpinnerPosition((Spinner) v.findViewById(R.id.spinMARITAL_STATUS),borrowerExtra.MARITAL_STATUS);
         Utils.setSpinnerPosition((Spinner) v.findViewById(R.id.spinRESERVATN_CATEGORY),borrowerExtra.RESERVATN_CATEGORY);
-        Utils.setSpinnerPosition((Spinner) v.findViewById(R.id.spinSpecialAbility),borrowerExtra.SOC_ATTR_4_SPL_ABLD);
         Utils.setSpinnerPosition((Spinner) v.findViewById(R.id.spinOCCUPATION_TYPE),borrowerExtra.OCCUPATION_TYPE);
 
         ((EditText) v.findViewById(R.id.editLandHold)).setText(borrowerExtra.SOC_ATTR_3_LAND_HOLD);
@@ -230,13 +335,15 @@ public class FragmentBorrowerPersonal_Additional extends AbsFragment {
          ((EditText) v.findViewById(R.id.editFather_FIRST_NAME)).setText(borrowerExtra.FATHER_FIRST_NAME);
         ((EditText) v.findViewById(R.id.editFATHER_MIDDLE_NAME)).setText(borrowerExtra.FATHER_MIDDLE_NAME);
         ((EditText) v.findViewById(R.id.editFATHER_LAST_NAME)).setText(borrowerExtra.FATHER_LAST_NAME);
+        ((EditText) v.findViewById(R.id.editYearsInBusiness)).setText(borrowerExtra.Years_In_Business);
 
     }
 
     @Override
     public void onPause() {
-        getDataFromView(getView());
-        super.onPause();
+            getDataFromView(getView());
+            super.onPause();
+
     }
 
     private void getDataFromView(View view) {
@@ -254,27 +361,30 @@ public class FragmentBorrowerPersonal_Additional extends AbsFragment {
         borrowerExtra.SOC_ATTR_4_SPL_ABLD=((Spinner) view.findViewById(R.id.spinSpecialAbility)).getSelectedItem().toString();
         borrowerExtra.OCCUPATION_TYPE=Utils.getSpinnerStringValue((Spinner) view.findViewById(R.id.spinOCCUPATION_TYPE));
 
-        borrowerExtra.SOC_ATTR_3_LAND_HOLD=Utils.getNotNullText((EditText) view.findViewById(R.id.editLandHold));
-                borrowerExtra.EDUCATION_CODE=Utils.getNotNullText((EditText) view.findViewById(R.id.editEducationalCode));
-        borrowerExtra.PLACE_OF_BIRTH=Utils.getNotNullText((EditText) view.findViewById(R.id.editPlaceOfBirth));
-                borrowerExtra.EMAIL_ID=Utils.getNotNullText((EditText) view.findViewById(R.id.editMailId));
-        borrowerExtra.FORM60_TNX_DT=Utils.getNotNullText((EditText) view.findViewById(R.id.editFORM60_TNX_DT));
-                borrowerExtra.FORM60_SUBMISSIONDATE=Utils.getNotNullText((EditText) view.findViewById(R.id.editFORM60_SUBMISSIONDATE));
-        borrowerExtra.MOTHER_TITLE=Utils.getNotNullText((EditText) view.findViewById(R.id.editMOTHER_TITLE));
-                borrowerExtra.MOTHER_FIRST_NAME=Utils.getNotNullText((EditText) view.findViewById(R.id.editMOTHER_FIRST_NAME));
-        borrowerExtra.MOTHER_MIDDLE_NAME=Utils.getNotNullText((EditText) view.findViewById(R.id.editMOTHER_MIDDLE_NAME));
-                borrowerExtra.MOTHER_LAST_NAME=Utils.getNotNullText((EditText) view.findViewById(R.id.editMOTHER_LAST_NAME));
-        borrowerExtra.MOTHER_MAIDEN_NAME=Utils.getNotNullText((EditText) view.findViewById(R.id.editMOTHER_MAIDEN_NAME));
-                borrowerExtra.SPOUSE_TITLE=Utils.getNotNullText((EditText) view.findViewById(R.id.editSPOUSE_TITLE));
-        borrowerExtra.SPOUSE_FIRST_NAME=Utils.getNotNullText((EditText) view.findViewById(R.id.editSPOUSE_FIRST_NAME));
-                borrowerExtra.SPOUSE_MIDDLE_NAME=Utils.getNotNullText((EditText) view.findViewById(R.id.editSPOUSE_MIDDLE_NAME));
-        borrowerExtra.SPOUSE_LAST_NAME=Utils.getNotNullText((EditText) view.findViewById(R.id.editSPOUSE_LAST_NAME));
-                borrowerExtra.APPLICNT_TITLE=Utils.getNotNullText((EditText) view.findViewById(R.id.editAPPLICNT_TITLE));
-        borrowerExtra.FATHER_TITLE=Utils.getNotNullText((EditText) view.findViewById(R.id.editFATHER_TITLE));
-                borrowerExtra.FATHER_FIRST_NAME=Utils.getNotNullText((EditText) view.findViewById(R.id.editFather_FIRST_NAME));
-        borrowerExtra.FATHER_MIDDLE_NAME=Utils.getNotNullText((EditText) view.findViewById(R.id.editFATHER_MIDDLE_NAME));
-                borrowerExtra.FATHER_LAST_NAME=Utils.getNotNullText((EditText) view.findViewById(R.id.editFATHER_LAST_NAME));
-
+        borrowerExtra.SOC_ATTR_3_LAND_HOLD=((EditText) view.findViewById(R.id.editLandHold)).getText().toString();
+                borrowerExtra.EDUCATION_CODE=((EditText) view.findViewById(R.id.editEducationalCode)).getText().toString();
+        borrowerExtra.PLACE_OF_BIRTH=((EditText) view.findViewById(R.id.editPlaceOfBirth)).getText().toString();
+                borrowerExtra.EMAIL_ID=((EditText) view.findViewById(R.id.editMailId)).getText().toString();
+        borrowerExtra.FORM60_TNX_DT=((EditText) view.findViewById(R.id.editFORM60_TNX_DT)).getText().toString();
+                borrowerExtra.FORM60_SUBMISSIONDATE=((EditText) view.findViewById(R.id.editFORM60_SUBMISSIONDATE)).getText().toString();
+                borrowerExtra.FORM60SUBMISSIONDATE=((EditText) view.findViewById(R.id.editFORM60_SUBMISSIONDATE)).getText().toString();
+        borrowerExtra.MOTHER_TITLE=((EditText) view.findViewById(R.id.editMOTHER_TITLE)).getText().toString();
+                borrowerExtra.MOTHER_FIRST_NAME=((EditText) view.findViewById(R.id.editMOTHER_FIRST_NAME)).getText().toString();
+        borrowerExtra.MOTHER_MIDDLE_NAME=((EditText) view.findViewById(R.id.editMOTHER_MIDDLE_NAME)).getText().toString();
+                borrowerExtra.MOTHER_LAST_NAME=((EditText) view.findViewById(R.id.editMOTHER_LAST_NAME)).getText().toString();
+        borrowerExtra.MOTHER_MAIDEN_NAME=((EditText) view.findViewById(R.id.editMOTHER_MAIDEN_NAME)).getText().toString();
+                borrowerExtra.SPOUSE_TITLE=((EditText) view.findViewById(R.id.editSPOUSE_TITLE)).getText().toString();
+        borrowerExtra.SPOUSE_FIRST_NAME=((EditText) view.findViewById(R.id.editSPOUSE_FIRST_NAME)).getText().toString();
+                borrowerExtra.SPOUSE_MIDDLE_NAME=((EditText) view.findViewById(R.id.editSPOUSE_MIDDLE_NAME)).getText().toString();
+        borrowerExtra.SPOUSE_LAST_NAME=((EditText) view.findViewById(R.id.editSPOUSE_LAST_NAME)).getText().toString();
+                borrowerExtra.APPLICNT_TITLE=((EditText) view.findViewById(R.id.editAPPLICNT_TITLE)).getText().toString();
+        borrowerExtra.FATHER_TITLE=((EditText) view.findViewById(R.id.editFATHER_TITLE)).getText().toString();
+                borrowerExtra.FATHER_FIRST_NAME=((EditText) view.findViewById(R.id.editFather_FIRST_NAME)).getText().toString();
+        borrowerExtra.FATHER_MIDDLE_NAME=((EditText) view.findViewById(R.id.editFATHER_MIDDLE_NAME)).getText().toString();
+                borrowerExtra.FATHER_LAST_NAME=((EditText) view.findViewById(R.id.editFATHER_LAST_NAME)).getText().toString();
+                borrowerExtra.Years_In_Business=((EditText) view.findViewById(R.id.editYearsInBusiness)).getText().toString();
+        Log.d("TAG", "getDataFromView: yha tk chal rha h 1");
+                borrowerExtra.save();
 
     }
 
