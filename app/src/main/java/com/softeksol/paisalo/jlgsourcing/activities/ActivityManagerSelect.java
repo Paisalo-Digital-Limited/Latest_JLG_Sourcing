@@ -167,7 +167,7 @@ public class ActivityManagerSelect extends AppCompatActivity implements View.OnC
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String jsonString = new String(responseBody);
-                //Log.d("Manager Data", jsonString);
+                Log.d("Manager Data", jsonString);
                 Type listType = new TypeToken<List<Manager>>() {
                 }.getType();
                 List<Manager> managers = WebOperations.convertToObjectArray(jsonString, listType);

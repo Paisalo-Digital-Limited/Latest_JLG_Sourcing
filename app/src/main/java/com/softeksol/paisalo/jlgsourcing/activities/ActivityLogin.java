@@ -741,7 +741,8 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         // below line is used to display our dialog
         builder.show();
     }
-    private void permissionCheck() {
+    private void
+    permissionCheck() {
 
 
 

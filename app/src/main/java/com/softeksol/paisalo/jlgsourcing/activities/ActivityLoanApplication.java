@@ -33,7 +33,8 @@ import com.softeksol.paisalo.jlgsourcing.fragments.FragmentKycScanning;
 import java.util.ArrayList;
 
 
-public class ActivityLoanApplication extends AppCompatActivity implements
+public class
+ActivityLoanApplication extends AppCompatActivity implements
         FragmentBorrowerAadhar.OnFragmentBorrowerAadharInteractionListener,
         FragmentBorrowerPersonal.OnFragmentBorrowerPersonalInteractionListener,
         FragmentBorrowerPersonal_Additional.OnFragmentBorrowerPersonal_AddInteractionListener,

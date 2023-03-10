@@ -1,7 +1,6 @@
 package com.softeksol.paisalo.jlgsourcing.fragments;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -11,11 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.softeksol.paisalo.jlgsourcing.Global;
@@ -62,8 +63,8 @@ public class FragmentBorrowerPersonal_Additional extends AbsFragment {
     private AdapterListRange AGRICULTURAL_INCOME, SOC_ATTR_2_INCOME, ANNUAL_INCOME, OTHER_THAN_AGRICULTURAL_INCOME, MARITAL_STATUS, OCCUPATION_TYPE, RESERVATN_CATEGORY;
     private ArrayAdapter<String> SOC_ATTR_4_SPL_ABLD,SOC_ATTR_5_SPL_SOC_CTG,VISUALLY_IMPAIRED_YN,FORM60_PAN_APPLIED_YN;
     ArrayList<String> items=new ArrayList<String>();
-    Spinner spinAGRICULTURAL_INCOME,spinSOC_ATTR_2_INCOME,spinSOC_ATTR_4_SPL_ABLD,spinANNUAL_INCOME,spinOTHER_THAN_AGRICULTURAL_INCOME;
-
+    Spinner spinAGRICULTURAL_INCOME,spinSOC_ATTR_2_INCOME,spinSOC_ATTR_4_SPL_ABLD,spinOTHER_THAN_AGRICULTURAL_INCOME;
+    TextView spinANNUAL_INCOME;
 
 
 
@@ -117,8 +118,8 @@ public class FragmentBorrowerPersonal_Additional extends AbsFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_borrower_personal__additional, container, false);
-        items.add("YES");
         items.add("NO");
+        items.add("YES");
         imgViewCal=v.findViewById(R.id.imgViewCal);
         ImgViewCal2=v.findViewById(R.id.imgViewCal2);
 
@@ -135,9 +136,8 @@ public class FragmentBorrowerPersonal_Additional extends AbsFragment {
          spinSOC_ATTR_4_SPL_ABLD=v.findViewById(R.id.spinSpecialAbility);
         SOC_ATTR_4_SPL_ABLD = new ArrayAdapter<String>(this.getContext(),R.layout.spinner_card_orange,R.id.text_cname, items);
         spinSOC_ATTR_4_SPL_ABLD.setAdapter(SOC_ATTR_4_SPL_ABLD);
-                spinANNUAL_INCOME=v.findViewById(R.id.spinAnnualIncome);
-        ANNUAL_INCOME = new AdapterListRange(this.getContext(), Utils.getList(1, 30, 1, 12000, "Rupees"), true);
-            spinANNUAL_INCOME.setAdapter(ANNUAL_INCOME);
+                spinANNUAL_INCOME=v.findViewById(R.id.textViewAnnualIncome);
+
         Spinner spinSOC_ATTR_5_SPL_SOC_CTG=v.findViewById(R.id.spinSpecialSocialCategory);
         SOC_ATTR_5_SPL_SOC_CTG = new ArrayAdapter<String>(this.getContext(),R.layout.spinner_card_orange,R.id.text_cname, items);
         spinSOC_ATTR_5_SPL_SOC_CTG.setAdapter(SOC_ATTR_5_SPL_SOC_CTG);
@@ -176,8 +176,67 @@ public class FragmentBorrowerPersonal_Additional extends AbsFragment {
                 //showDate(year, month+1, day);
             }
         });
+
+        spinOTHER_THAN_AGRICULTURAL_INCOME.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                int agriIncome=Integer.parseInt(Utils.getSpinnerStringValue((Spinner) v.findViewById(R.id.spinAgriIncome)));
+                int income=Integer.parseInt(Utils.getSpinnerStringValue((Spinner) v.findViewById(R.id.spinIncome)));
+                chnageAnuualText(Integer.parseInt(Utils.getSpinnerStringValue((Spinner) v.findViewById(R.id.spinOTHER_THAN_AGRICULTURAL_INCOME))),agriIncome,income,v);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+                spinSOC_ATTR_2_INCOME.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                        int agriIncome=Integer.parseInt(Utils.getSpinnerStringValue((Spinner) v.findViewById(R.id.spinAgriIncome)));
+                        int otherThanIncome=Integer.parseInt(Utils.getSpinnerStringValue((Spinner) v.findViewById(R.id.spinOTHER_THAN_AGRICULTURAL_INCOME)));
+
+
+
+                        chnageAnuualText(otherThanIncome,agriIncome,Integer.parseInt(Utils.getSpinnerStringValue((Spinner) v.findViewById(R.id.spinIncome))),v);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+
+
+        spinAGRICULTURAL_INCOME.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                int otherThanIncome=Integer.parseInt(Utils.getSpinnerStringValue((Spinner) v.findViewById(R.id.spinOTHER_THAN_AGRICULTURAL_INCOME)));
+                int income=Integer.parseInt(Utils.getSpinnerStringValue((Spinner) v.findViewById(R.id.spinIncome)));
+                chnageAnuualText(otherThanIncome,Integer.parseInt(Utils.getSpinnerStringValue((Spinner) v.findViewById(R.id.spinAgriIncome))),income,v);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         return  v;
     }
+
+    private void chnageAnuualText(int ontherThanAgri, int agriIncome, int income,View v) {
+
+        int annualIncome=(12*income)+(12*agriIncome)+ontherThanAgri;
+        ((TextView) v.findViewById(R.id.textViewAnnualIncome)).setText(String.valueOf(annualIncome));
+
+    }
+
     public void openDatePickerDialog(final View v) {
         // Get Current Date
         Calendar cal=Calendar.getInstance();
@@ -214,7 +273,7 @@ public class FragmentBorrowerPersonal_Additional extends AbsFragment {
                 public void onDateSet(DatePicker arg0,
                                       int arg1, int arg2, int arg3) {
                     // TODO Auto-generated method stub
-                    // arg1 = year
+                    // arg1 = year 
                     // arg2 = month
                     // arg3 = day
                     try {
@@ -295,7 +354,7 @@ public class FragmentBorrowerPersonal_Additional extends AbsFragment {
 
         Utils.setSpinnerPosition((Spinner) v.findViewById(R.id.spinAgriIncome),borrowerExtra.AGRICULTURAL_INCOME);
         Utils.setSpinnerPosition((Spinner) v.findViewById(R.id.spinIncome),borrowerExtra.SOC_ATTR_2_INCOME);
-        Utils.setSpinnerPosition((Spinner) v.findViewById(R.id.spinAnnualIncome),borrowerExtra.ANNUAL_INCOME);
+        ((TextView) v.findViewById(R.id.textViewAnnualIncome)).setText(borrowerExtra.ANNUAL_INCOME);
         Utils.setSpinnerPosition((Spinner) v.findViewById(R.id.spinOTHER_THAN_AGRICULTURAL_INCOME),borrowerExtra.OTHER_THAN_AGRICULTURAL_INCOME);
         int spinnerPositionVisuallyImpaired= VISUALLY_IMPAIRED_YN.getPosition(borrowerExtra.VISUALLY_IMPAIRED_YN);
         ((Spinner)v.findViewById(R.id.spinVisuallyImpaired)).setSelection(spinnerPositionVisuallyImpaired);
@@ -351,8 +410,8 @@ public class FragmentBorrowerPersonal_Additional extends AbsFragment {
 
         borrowerExtra.AGRICULTURAL_INCOME=Utils.getSpinnerStringValue((Spinner) view.findViewById(R.id.spinAgriIncome));
         borrowerExtra.SOC_ATTR_2_INCOME=Utils.getSpinnerStringValue((Spinner) view.findViewById(R.id.spinIncome));
-        borrowerExtra.ANNUAL_INCOME=Utils.getSpinnerStringValue((Spinner) view.findViewById(R.id.spinAnnualIncome));
         borrowerExtra.OTHER_THAN_AGRICULTURAL_INCOME=Utils.getSpinnerStringValue((Spinner) view.findViewById(R.id.spinOTHER_THAN_AGRICULTURAL_INCOME));
+        borrowerExtra.ANNUAL_INCOME=((TextView) view.findViewById(R.id.textViewAnnualIncome)).getText().toString();
         borrowerExtra.VISUALLY_IMPAIRED_YN=((Spinner) view.findViewById(R.id.spinVisuallyImpaired)).getSelectedItem().toString();
         borrowerExtra.SOC_ATTR_5_SPL_SOC_CTG=((Spinner) view.findViewById(R.id.spinSpecialSocialCategory)).getSelectedItem().toString();
         borrowerExtra.FORM60_PAN_APPLIED_YN=((Spinner) view.findViewById(R.id.spinFORM60_PAN_APPLIED_YN)).getSelectedItem().toString();
