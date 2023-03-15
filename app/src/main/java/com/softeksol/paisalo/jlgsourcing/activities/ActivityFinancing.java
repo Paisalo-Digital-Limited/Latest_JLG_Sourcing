@@ -77,6 +77,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -565,10 +566,9 @@ public class ActivityFinancing extends AppCompatActivity
             borrower.Approved = null;
 
         String ErrorMsg="";
-        Log.d("TAG", "submitLoanApplication: "+borrower.fiExtra.MOTHER_FIRST_NAME.equals(""));
-        if (borrower.fiExtra.MOTHER_FIRST_NAME.equals("") || borrower.fiExtra.MOTHER_FIRST_NAME.equals(null)){
+        if (Objects.equals(borrower.fiExtra.MOTHER_FIRST_NAME, "")){
             ErrorMsg=ErrorMsg+"\n>> Please enter mother name";
-        } if (borrower.fiExtra.FATHER_FIRST_NAME.equals("") || borrower.fiExtra.FATHER_FIRST_NAME.equals(null)){
+        } if (Objects.equals(borrower.fiExtra.FATHER_FIRST_NAME, "") ){
             ErrorMsg=ErrorMsg+"\n>> Please enter father name";
         } if(Integer.valueOf(borrower.fiExtra.ANNUAL_INCOME)!=((12*Integer.valueOf(borrower.fiExtra.AGRICULTURAL_INCOME))+(12*Integer.valueOf(borrower.fiExtra.SOC_ATTR_2_INCOME)+(Integer.valueOf(borrower.fiExtra.OTHER_THAN_AGRICULTURAL_INCOME))))){
             ErrorMsg=ErrorMsg+"\n>> Please enter proper details of income";

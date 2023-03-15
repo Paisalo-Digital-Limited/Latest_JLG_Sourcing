@@ -90,8 +90,8 @@ android {
         }
 
         SBIColending {
-            versionCode 10
-            versionName "10.2"
+            versionCode 11
+            versionName "11.0"
             applicationId "net.softeksol.seil.groupfin.sbicolending"
             resValue("string", "appname", "SBI-CoLending")
             buildConfigField("String", 'DATABASE_NAME', '"SBIPDLCOL"')
